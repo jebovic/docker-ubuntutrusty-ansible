@@ -14,6 +14,15 @@ RUN apt-get update \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 
+# Upgrade python version to 2.7.10
+RUN apt-add-repository -y ppa:fkrull/deadsnakes-python2.7 \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+       python2.7 \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
+    && apt-get clean
+
 # Install Ansible.
 RUN apt-add-repository -y ppa:ansible/ansible \
     && apt-get update \
